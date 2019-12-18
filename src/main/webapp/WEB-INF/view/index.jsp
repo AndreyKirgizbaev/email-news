@@ -3,43 +3,46 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 
 
 <html>
 <head>
-    <title>GuestBook</title>
+    <title>News</title>
 </head>
 
 
 <body>
 
-<c:url value="/index" var="jdbcQueryAllGuests"/>
-<c:url value="/jdbcInsertGuest" var="jdbcInsertGuest"/>
-
 <div>
     <h1>
-        GuestBook
+        EmailNews
     </h1>
-
-<%--    <a href="${jdbcQueryAllGuests}">GuestBook</a>--%>
-
 
     <div>
         <c:if test="${not empty resultObject}">
 
             <table>
-                <c:forEach var="guestVar" items="#{resultObject}">
+                <c:forEach var="newsVar" items="#{resultObject}">
                     <tr>
-                        <td><b>Guest: </b></td>
-                        <td><c:out value="${guestVar.guestName}"/></td>
+                        <td><b>Author: </b></td>
+                        <td><c:out value="${newsVar.newsAuthor}"/></td>
                     </tr>
                     <tr>
-                        <td><b>Comment: </b></td>
-                        <td><c:out value="${guestVar.comment}"/></td>
+                        <td></td>
+                        <td><h3><c:out value="${newsVar.newsHeadline}"/></h3></td></td>
                     </tr>
                     <tr>
-                        <td><br/></td>
+                        <td></td>
+                        <td><c:out value="${newsVar.newsMain}"/></td>
                     </tr>
+                    <tr>
+                        <td>Date: </td>
+                        <td><c:out value="${newsVar.newsDate}"/></td>
+                    </tr>
+                    <tr><td><br/></td></tr>
+                    <tr><td><br/></td></tr>
+                    <tr><td><br/></td></tr>
                 </c:forEach>
             </table>
 
@@ -49,15 +52,19 @@
     <br/>
 
 
-    <form name="guest" action="/jdbcInsertGuest" method="POST">
+    <form name="news" action="/jdbcInsertNews" method="POST">
         <table>
             <tr>
-                <td><b>Name: </b></td>
-                <td><input type='text' name='guestName' required/></td>
+                <td><b>Author: </b></td>
+                <td><input type='text' name='newsAuthor' required/></td>
             </tr>
             <tr>
-                <td><b>Comment: </b></td>
-                <td><input type='text' name="comment" required/></td>
+                <td><b>News Headline: </b></td>
+                <td><input type='text' name="newsHeadline" required/></td>
+            </tr>
+            <tr>
+                <td><b>News: </b></td>
+                <td><input type='text' name="newsMain" required/></td>
             </tr>
         </table>
 

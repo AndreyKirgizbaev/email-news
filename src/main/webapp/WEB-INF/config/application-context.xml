@@ -30,5 +30,22 @@
         <jdbc:script location="classpath:test-data.sql"/>
     </jdbc:initialize-database>
 
+    <!-- Hazelcast -->
+    <bean id="instance" class="com.hazelcast.core.Hazelcast" factory-method="newHazelcastInstance">
+        <constructor-arg>
+            <bean class="com.hazelcast.config.Config">
+                <property name="groupConfig">
+                    <bean class="com.hazelcast.config.GroupConfig">
+                        <property name="name" value="dev"/>
+                        <property name="password" value="pwd"/>
+                    </bean>
+                </property>
+                <!-- and so on ... -->
+            </bean>
+        </constructor-arg>
+    </bean>
 
+    <bean id="map" factory-bean="instance" factory-method="getMap">
+        <constructor-arg value="map"/>
+    </bean>
 </beans>

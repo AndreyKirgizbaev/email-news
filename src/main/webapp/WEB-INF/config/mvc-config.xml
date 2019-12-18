@@ -22,11 +22,6 @@
      -->
     <mvc:annotation-driven/>
 
-    <!--org.springframework.web.servlet.PageNotFound.noHandlerFound No mapping found
-    for HTTP request with URI [/jdbcUpdate/user/username/user@javastudy.ru/enabled/resources/css/bootstrap.css]
-     in DispatcherServlet with name 'dispatcherServlet'-->
-    <!--<mvc:default-servlet-handler/>-->
-
     <!-- ViewResolver bean config for mapping strings to jsp views -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <!-- Example: a logical view name of 'showMessage' is mapped to '/WEB-INF/jsp/showMessage.jsp' -->
@@ -34,7 +29,6 @@
         <property name="prefix" value="/WEB-INF/view/" />
         <property name="suffix" value=".jsp" />
     </bean>
-
 
     <mvc:view-controller path="/" view-name="/index"/>
 
